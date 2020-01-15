@@ -2,6 +2,16 @@
 
 .container 
 {
- color: blue;
  background: url(https://d3awvtnmmsvyot.cloudfront.net/api/file/9Ky6TIRSrWCLHlAjOQaA);
+ font-family: 'IM Fell Great Primer SC', serif;
+ background-repeat: none;
+}
+
+header
+{
+    width: 100%;
+    margin: auto;
+    color: whitesmoke;
+    text-align: center;
+    background-color: #2117ad;
 }
