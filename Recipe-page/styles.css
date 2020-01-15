@@ -4,14 +4,27 @@
 {
  background: url(https://d3awvtnmmsvyot.cloudfront.net/api/file/9Ky6TIRSrWCLHlAjOQaA);
  font-family: 'IM Fell Great Primer SC', serif;
- background-repeat: none;
+ background-repeat: no-repeat;
+ background-position: center;
 }
 
 header
 {
     width: 100%;
+    height: 100px;
     margin: auto;
-    color: whitesmoke;
     text-align: center;
-    background-color: #2117ad;
+    background-color: lightgrey;
+}
+.description {
+    background-color: white;
+    opacity: 0.6;
+    width: 500px;
+    text-align: left;
+}
+
+.left {
+    background-color: white;
+    opacity: 0.7;
+    text-align: left;
 }
