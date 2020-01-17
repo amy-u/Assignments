@@ -1,6 +1,6 @@
 /* Design */
 
-.container 
+ .container
 {
  background: url(https://d3awvtnmmsvyot.cloudfront.net/api/file/9Ky6TIRSrWCLHlAjOQaA);
  font-family: 'IM Fell Great Primer SC', serif;
@@ -20,17 +20,16 @@ header
 }
 .description {
     width: 500px;
-    font-weight: bold;
+    font-weight: bolder;
     font-size: larger;
     background-color: whitesmoke;
-    opacity: 0.8;
 }
 
 section
 {
     grid-template-columns: 30% 70%;
     background-color: rgb(175,162,184);
-    opacity: 0.6;
+    opacity: 0.8;
 }
 
 .left 
