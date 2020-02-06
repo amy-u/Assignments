@@ -10,19 +10,21 @@ class EventRecommender {
     
     }
 
-    addEvent(eName,description,date,city,venue,price) {
+    addEvent(newEvent) {
     // Adds a new Event to the System
-    let newEvent = new Event(eName,description,date,city,venue,price);
+    // The add event is "add-event-id" "add-event-name"
     this.events.push(newEvent);
     }
 
-    addUser(first,last) {
+    addUser(newUser) {
     // Adds a new User to the System
-    let newUser = new User(first,last); // Creating a new user obj into the variable newUser
+     // Creating a new user obj into the variable newUser
+    // The id is "add-user-id" "add-user-name"
     this.users.push(newUser); // Pushing the newUser obj into the user array that is in the constructor
     }
 
     saveUserEvent(event,user){
+      // Save event for user "save-user-id" "save-event-id"
     // Allow users to save events to a personal Events array.
     // Want take the event that gets passed in and store it in to the user that gets passed in
     user.likes.push(event);
@@ -30,17 +32,20 @@ class EventRecommender {
 
     deleteUser(user) {
     // Deletes a User from the system
+    // Delete user input is delete user id
     this.deletedUsers.push(user); // This stores the deleted user in to deletedUser as histry for data information/records
     this.user.splice(user,1); // This method cuts out the user from the data base/accounts
     }
    
     deleteEvent(event) {
     // Deletes the Event from the system
+    // Delete event input is "delete-event-id"
     this.deletedEvents.push(event); // This stores the deleted events in to deletedEvents as history for records
     this.events.splice(event,1); // This method cuts out the events from the event list.
     }
 
     findEventsByDate(userInputDate,theEventDatesGiven){
+      //Date search input is "date-search-id"
     // Returns all events on a given date
     // The userInPutDate will be an input from the search bar note this will be just MM/DD/YYYY
     events.filter(function (time){
@@ -50,17 +55,18 @@ class EventRecommender {
             var wantDate = new Date(userInputDate).getTime(); // convert to mill
             var eventDates = theEventDatesGiven[i].getTime(); // convert the event date into mill to compare
             if(wantDate == eventDates){ // comparing the millsecond
-                matchingEvents.push(theEventDatesGiven[i]); // return the event
+                matchingEvents = theEventDatesGiven[i]; // return the event
             }
-        }
-        else{
-            matchingEvents.push("No Events has been found") // If not found
-        }
+        // }else{
+        //     matchingEvents = "No Events has been found"; // If not found
+        // }
     return matchingEvents;
-    })
-    };
-    
-    findEventsbyCategory(userInputCat,eventGivenCat){
+    }
+    //)
+    ;})
+  }
+    findEventsbyCategory(userInputCat,eventGivenCat)  {
+      // Category search input is "catefory-search-id"
     // Returns all events in a given category
         var toCap = userInputCat.toUpperCase();
         var matchingCate = [];
@@ -69,23 +75,19 @@ class EventRecommender {
             matchingCate.push(eventGivenCat[i]);
         }
     }
-        else {
         matchingCate.push("No Events found in this category");
-    }
     return matchingCate;
+}
 }
 
 class User {
-    //my name is Amy, Ung,
-    constructor(first, last){
+    //my name is Amy, Ung
+    constructor(first,last) {
     this.first = first;
     this.last = last;
-
-    this.likes = [];
-    this.upComingEvents = [];
-}
-
-
+    // this.likes = [];
+    // this.upComingEvents = [];
+    }
 }
 
 
@@ -143,12 +145,17 @@ class Event {
   // pushing multiple objects to an array at once
   eventArray.push(/*input of events*/);
   
-  $(document).ready(function() {
-    let html = "";
-    $.each(eventArray, function(index, item) {
-      html += `<li>${item.ename} - ${item.description} <ol>${item.searchTickets(0,250)}</ol> </li>`;
-    });
-    // insert final html into #event...
-    $("#index").html(html);
-  });
+  // $(document).ready(function() {
+  //   let html = "";
+  //   $.each(eventArray, function(index, item) {
+  //     html += `<li>${item.ename} - ${item.description} <ol>${item.searchTickets(0,250)}</ol> </li>`;
+  //   });
+  //   // insert final html into #event...                    
+  //   $("#index").html(html);
+  // });
+
+
+  if(typeOf module != 'undefined'){
+    module.exports = { EventRecommender, User, Event}
+  }
   
