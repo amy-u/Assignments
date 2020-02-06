@@ -3,5 +3,5 @@ $(document).ready( () => {
     // Your code here
     // hard code some jQuery to display some examples
 
-    
+
 });
