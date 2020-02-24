@@ -81,9 +81,10 @@ class EventRecommender {
 }
 
 class User {
-    constructor(last,first) {
+    constructor(first,last,idNum) {
     this.first = first;
     this.last = last;
+    this.idNum = idNum;
     this.favorite = [];
     // this.upComingEvents = [];
     }
