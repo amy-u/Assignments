@@ -159,7 +159,7 @@ class Event {
   // });
 
 
-  if (typeOf module != "undefined"){ // double check if I need to delete this line
+  if (typeof module != "undefined"){ // double check if I need to delete this line
     module.exports = { EventRecommender, User, Event}
   }
 
