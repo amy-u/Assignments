@@ -27,7 +27,7 @@ class EventRecommender {
       // Save event for user "save-user-id" "save-event-id"
     // Allow users to save events to a personal Events array.
     // Want take the event that gets passed in and store it in to the user that gets passed in
-    user.likes.push(event);
+    user.likes(event);
     }
 
     deleteUser(user) {
@@ -81,12 +81,15 @@ class EventRecommender {
 }
 
 class User {
-    //my name is Amy, Ung
-    constructor(first,last) {
+    constructor(last,first) {
     this.first = first;
     this.last = last;
-    // this.likes = [];
+    this.favorite = [];
     // this.upComingEvents = [];
+    }
+
+    likes(favorite){
+      this.favorite.push(favorite);
     }
 }
 
@@ -155,7 +158,9 @@ class Event {
   // });
 
 
-  if(typeOf module != 'undefined'){
+  if (typeOf module != "undefined"){ // double check if I need to delete this line
     module.exports = { EventRecommender, User, Event}
   }
+
+  // module.exports = {EventRecommender, User, Event};
   
