@@ -48,30 +48,47 @@ $(document).ready(() => {
     })
 
     //Adding new event
-    $("#add-event").submit(() => {
+    $("#add-event").submit((event) => {
+        event.preventDefault();
         let str = $("#add-event-name").val().toUpperCase();
         let num = $("#add-event-id").val();
         eventRecommender.addEvent(num,str);
         if(str == '' && num == ''){
             alert("Error! Missing name or id nubmer.");
-            return false;
         }
         else{$("#all-events").html(`<dt>${str}</dt> <dd><strong>ID:</strong> ${num} <dd>`);
-        return false;
         }
     });
     //Deleting event
-    $("#delete-event").submit(() => {
+    $("#delete-event").submit((event) => {
+        event.preventDefault();
         let num = $("#delete-event-id").val();
         eventRecommender.deleteEvents(num);
         if(num == ''){
             alert("Error! Missing id nubmer.");
-            return false;
         }
     })
 
-    $("#keyword-search").submit(() => {
+    $("#keyword-search").submit((event) => {
+        event.preventDefault();
         let keyS = $("#keyword-search-id").val();
+        $.ajax({
+            type:"GET",
+            url:`https://app.ticketmaster.com/discovery/v2/events.json?keyword=${keyS}&apikey=PJ8yG7ihoki3GLVbSJmFtl4BcM2wvsuO`,
+            async:true,
+            dataType: "json",
+            success: function(result) {
+                        console.log(result);
+                        // Parse the response.
+                        // Do other things.
+                        result._embedded.events.map((anEvent) => {
+                            $("#show-up").append(`<dt> Name: ${anEvent.name} </dt>`);
+                        })
+                     },
+            error: function(xhr, status, err) {
+                        // This time, we do not end up here!
+                     }
+          });
     })
 
 });
