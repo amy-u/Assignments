@@ -5,23 +5,24 @@ class EventRecommender {
     //imagine this as a search bar
     this.events = [];
     this.users = [];
-    this.deletedUsers = [];
-    this.deletedEvents = [];
-    
     }
 
-    addEvent(newEvent) {
+    addEvent(id,name) {
     // Adds a new Event to the System
     // The add event is "add-event-id" "add-event-name"
-    this.events.push(newEvent);
+    console.log(this.events);
+    let anEvent = new Event(id,name);
+    this.events.push(anEvent);
     }
 
-    addUser(newUser) {
+    addUser(id,name) {
     // Adds a new User to the System
      // Creating a new user obj into the variable newUser
     // The id is "add-user-id" "add-user-name"
-    this.users.push(newUser); // Pushing the newUser obj into the user array that is in the constructor
-    }
+    console.log(this.users);
+    let person = new User(id,name);
+    this.users.push(person); // Pushing the newUser obj into the user array that is in the constructor
+  }
 
     saveUserEvent(event,user){
       // Save event for user "save-user-id" "save-event-id"
@@ -30,18 +31,20 @@ class EventRecommender {
     user.likes(event);
     }
 
-    deleteUser(user) {
+    deleteUser(deleteIt) {
     // Deletes a User from the system
     // Delete user input is delete user id
-    this.deletedUsers.push(user); // This stores the deleted user in to deletedUser as histry for data information/records
-    this.user.splice(user,1); // This method cuts out the user from the data base/accounts
+    // this.deletedUsers.push(user); // This stores the deleted user in to deletedUser as histry for data information/records
+    let dUser = this.users.filter(user =>  user.id !== deleteIt);
+    console.log(dUser); // This method cuts out the user from the data base/accounts
     }
    
-    deleteEvent(event) {
+    deleteEvent(deleteIt) {
     // Deletes the Event from the system
     // Delete event input is "delete-event-id"
-    this.deletedEvents.push(event); // This stores the deleted events in to deletedEvents as history for records
-    this.events.splice(event,1); // This method cuts out the events from the event list.
+    // this.deletedEvents.push(event); // This stores the deleted events in to deletedEvents as history for records
+    let dEvent = this.events.filter(event => event.id !== deleteIt); // This method cuts out the events from the event list.
+    console.log(dEvent);
     }
 
     findEventsByDate(userInputDate,theEventDatesGiven){
@@ -81,9 +84,9 @@ class EventRecommender {
 }
 
 class User {
-    constructor(last,first) {
-    this.first = first;
-    this.last = last;
+    constructor(id, name) {
+    this.name =  name;
+    this.id = id;
     this.favorite = [];
     // this.upComingEvents = [];
     }
@@ -97,13 +100,14 @@ class User {
 
 /* This event will have the name of the event, description, time, amount of tickets, available tickets,  */
 class Event {
-    constructor(eName,description,date,city,venue,price) {
+    constructor(id,eName) {
+      this.id = id;
       this.eName = eName; // Event's name
-      this.description = description; // Discription of the event
-      this.date = date;
-      this.city = city;
-      this.venue = venue;
-      this.price = price;
+      // this.description = description; // Discription of the event
+      // this.date = date;
+      // this.city = city;
+      // this.venue = venue;
+      // this.price = price;
 
     //   this.availableTickets = []; // Empty array to store the available tickets
     }
@@ -158,7 +162,7 @@ class Event {
   // });
 
 
-  if (typeOf module != "undefined"){ // double check if I need to delete this line
+  if (typeof module != "undefined"){ // double check if I need to delete this line
     module.exports = { EventRecommender, User, Event}
   }
 
