@@ -7,10 +7,14 @@
     "express": "^4.17.1",
     "npm": "^6.14.2"
   },
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "devDependencies": {
+    "nodemon": "^2.0.2"
   },
+  "scripts": {
+    "start": "node index",
+    "dev": "nodemon index"
+  },
+
   "keywords": [],
   "author": "",
   "license": "ISC"
