@@ -1,6 +1,6 @@
 $(document).ready(() => {
-    const eventRecommender = new EventRecommender();
-    // eventRecommender.addUser('liz Audry');
+    // const eventRecommender = new EventRecommender();
+    // eventRecommender.addUser('liz Audry', "88");
     // eventRecommender.addUser('20thCentDaddy', 'joseph');
     // eventRecommender.addUser('XcrusheddreamsX', 'caesar');
     // eventRecommender.addUser('GhostPuncher', 'star platinum');
@@ -16,28 +16,30 @@ $(document).ready(() => {
     
     //Adding new user
     $("#add-user").submit(function() {
+        event.preventDefault();
         let str = $("#add-user-name").val().toUpperCase();
         let num = $("#add-user-id").val();
-        console.log(str,num);
-
-        eventRecommender.addUser(num,str);
-        if(str == '' && num == ''){
-            alert("Error! Missing name or id nubmer.");
-            return false;
-        }
-        else if( num.type() == number){
-            alert("Error! Not name or id nubmer.");
-            return false;
-        }
-        else{
-        $("#all-users").html(`<dt>${str}</dt> <dd><strong>ID:</strong> ${num} <dd>`);
-        return false;
-        };
+        // console.log(str,num);
+        $.ajax({
+            url: '/users',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({str,num})
+        });
+        // console.log(str,num);
+        
+        // if(str == "" || num == ""){
+        //     alert("Error! Missing name or id nubmer.");
+        // } else{
+        //     // $("#all-users").html(`<dt>${str}</dt> <dd><strong>ID:</strong> ${num} <dd>`),
+        //     eventRecommender.addUser(num,str);
+        //     // $("#all-users").html(`<dt> ${eventRecommender.users}</dt>`);
+        // };
     });
-
 
     //Deleting user
     $("#delete-user").submit(() => {
+        event.preventDefault();
         let num = $("#delete-user-id").val();
         eventRecommender.deleteUser(num);
         if(num == ''){
@@ -57,6 +59,7 @@ $(document).ready(() => {
             alert("Error! Missing name or id nubmer.");
         }
         else{$("#all-events").html(`<dt>${str}</dt> <dd><strong>ID:</strong> ${num} <dd>`);
+        console.log(eventRecommender.user)
         }
     });
     //Deleting event
