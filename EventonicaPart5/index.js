@@ -1,3 +1,6 @@
+const pgp = require("pg-promise")();
+const db = pgp("postgres://tpl1219_11@localhost:5432/Eventonica");
+
 class EventRecommender {
     constructor() {
     // All main properties should go here.
@@ -19,9 +22,14 @@ class EventRecommender {
     // Adds a new User to the System
      // Creating a new user obj into the variable newUser
     // The id is "add-user-id" "add-user-name"
-    console.log(this.users);
-    let person = new User(param.id,param.name);
-    this.users.push(person); // Pushing the newUser obj into the user array that is in the constructor
+    // console.log(this.users);
+    // let person = new User(param.id,param.name);
+    // this.users.push(person); // Pushing the newUser obj into the user array that is in the constructor
+    db.one('INSERT INTO users(ID, NAME) VALUES($1,$2) RETURNING id, name', [param.id, param.name])
+        .then(data => {
+        console.log(`user ${data.name} added to database`);
+        return data;
+    });
   }
 
     saveUserEvent(event,user){
@@ -162,9 +170,15 @@ class Event {
   // });
 
 
-  if (typeof module != "undefined"){ // double check if I need to delete this line
-    module.exports = { EventRecommender, User, Event}
-  }
-
-  // module.exports = {EventRecommender, User, Event};
+  // if (typeof module != "undefined"){ // double check if I need to delete this line
+  //   module.exports = { EventRecommender, User, Event}
+  // }
+  /*export const EventRecommender = "EventRecommender";
+  export const User = "User";
+  export const Event = "Event";*/
+  module.exports = {
+    EventRecommender : EventRecommender, 
+    User : User, 
+    Event: Event
+  };
   

@@ -1,13 +1,16 @@
-const { EventRecommender, User, Event } = require('./index.js');
+const my_event = require('./index.js');
+//import {EventRecommender, User, Event} from 'index';
 const path = require('path');
 
 const express = require('express');
 
 const app = express();
 
+
+
 app.use(express.json());
 app.use(express.static(path.join(__dirname + '/')));
-const project = new EventRecommender;
+const project = new my_event.EventRecommender;
 
 app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/index.html'));
@@ -19,17 +22,17 @@ app.get('/users', (req, res) => {
     res.status(200).send(project.users);
 });
 
-app.post('/submit-users-data', (req, res) => {
+app.post('/users', (req, res) => {
     console.log(req.body, "Hello"); // To check console if it is printing
-    var info = req.body.id + " " + req.body.name;
-    res.status(200).send(info);
+    var info = {id: req.body.id, name: req.body.name};
+    res.status(200).send(project.addUser(info));
 });
 
-app.put('/update-users-data'), (req,res) => {
+app.put('/users'), (req,res) => {
     res.status(200).send(project.addUser(str,num));
 }
 
-app.delete('/delete-users-data', (req, res) => {
+app.delete('/users', (req, res) => {
     res.status(200).send(project.deleteUser);
 });
 

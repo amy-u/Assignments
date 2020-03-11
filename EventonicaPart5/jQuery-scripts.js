@@ -17,14 +17,14 @@ $(document).ready(() => {
     //Adding new user
     $("#add-user").submit(function() {
         event.preventDefault();
-        let str = $("#add-user-name").val().toUpperCase();
-        let num = $("#add-user-id").val();
+        let name = $("#add-user-name").val().toUpperCase();
+        let id = $("#add-user-id").val();
         // console.log(str,num);
         $.ajax({
             url: '/users',
             type: 'POST',
             contentType: 'application/json',
-            data: JSON.stringify({str,num})
+            data: JSON.stringify({id,name})
         });
         // console.log(str,num);
         
