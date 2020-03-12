@@ -18,10 +18,17 @@
     "@babel/preset-env": "^7.8.7",
     "nodemon": "^2.0.2"
   },
+<<<<<<< HEAD
+=======
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  },
+>>>>>>> 6f8ce2cd6eaae71d2a6cd1ca2f4b30fbf5e7974f
   "scripts": {
     "start": "node index",
     "dev": "nodemon index"
   },
+
   "keywords": [],
   "author": "",
   "license": "ISC"

@@ -1,16 +1,26 @@
+<<<<<<< HEAD
 const my_event = require('./index.js');
 //import {EventRecommender, User, Event} from 'index';
+=======
+const { EventRecommender, User, Event } = require('./index.js');
+>>>>>>> 6f8ce2cd6eaae71d2a6cd1ca2f4b30fbf5e7974f
 const path = require('path');
 
 const express = require('express');
 
 const app = express();
 
+<<<<<<< HEAD
 
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname + '/')));
 const project = new my_event.EventRecommender;
+=======
+app.use(express.json());
+app.use(express.static(path.join(__dirname + '/')));
+const project = new EventRecommender;
+>>>>>>> 6f8ce2cd6eaae71d2a6cd1ca2f4b30fbf5e7974f
 
 app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/index.html'));
@@ -22,6 +32,7 @@ app.get('/users', (req, res) => {
     res.status(200).send(project.users);
 });
 
+<<<<<<< HEAD
 app.post('/users', (req, res) => {
     console.log(req.body, "Hello"); // To check console if it is printing
     var info = {id: req.body.id, name: req.body.name};
@@ -33,6 +44,19 @@ app.put('/users'), (req,res) => {
 }
 
 app.delete('/users', (req, res) => {
+=======
+app.post('/submit-users-data', (req, res) => {
+    console.log(req.body, "Hello"); // To check console if it is printing
+    var info = req.body.id + " " + req.body.name;
+    res.status(200).send(info);
+});
+
+app.put('/update-users-data'), (req,res) => {
+    res.status(200).send(project.addUser(str,num));
+}
+
+app.delete('/delete-users-data', (req, res) => {
+>>>>>>> 6f8ce2cd6eaae71d2a6cd1ca2f4b30fbf5e7974f
     res.status(200).send(project.deleteUser);
 });
 

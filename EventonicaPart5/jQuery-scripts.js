@@ -17,14 +17,23 @@ $(document).ready(() => {
     //Adding new user
     $("#add-user").submit(function() {
         event.preventDefault();
+<<<<<<< HEAD
         let name = $("#add-user-name").val().toUpperCase();
         let id = $("#add-user-id").val();
+=======
+        let str = $("#add-user-name").val().toUpperCase();
+        let num = $("#add-user-id").val();
+>>>>>>> 6f8ce2cd6eaae71d2a6cd1ca2f4b30fbf5e7974f
         // console.log(str,num);
         $.ajax({
             url: '/users',
             type: 'POST',
             contentType: 'application/json',
+<<<<<<< HEAD
             data: JSON.stringify({id,name})
+=======
+            data: JSON.stringify({str,num})
+>>>>>>> 6f8ce2cd6eaae71d2a6cd1ca2f4b30fbf5e7974f
         });
         // console.log(str,num);
         
